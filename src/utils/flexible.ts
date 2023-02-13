@@ -9,6 +9,10 @@ export const isMobileTerminal = computed(() => {
   // return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
   //     navigator.userAgent
   //  )
-  const { width } = useWindowSize();
-  return width.value < PC_DEVICE_WIDTH;
+
+  // getBy deviceWidth
+  // const { width } = useWindowSize();
+  // return width.value < PC_DEVICE_WIDTH;
+  console.log(navigator.userAgent);
+  return false;
 });
