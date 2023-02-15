@@ -8,6 +8,5 @@ const router = createRouter({
   history: createWebHistory(),
   routes: isMobileTerminal.value ? mobileTerminalRoutes : pcTerminalRoutes,
 });
-console.log(router);
 
 export default router;
