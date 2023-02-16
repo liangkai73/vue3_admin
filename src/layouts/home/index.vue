@@ -10,10 +10,11 @@
 <template>
     <div id="app">
         <div class="head">head11</div>
-        <div class="menu">
-            <siderbar></siderbar>
+        <siderbar class="home-sidebar"></siderbar>
+        <div class="container">
+            <router-view class="container-inner"></router-view>
         </div>
-        <router-view class="container"></router-view>
+
     </div>
 </template>
 
@@ -36,10 +37,9 @@ import siderbar from './siderbar.vue';
     background: #b4da6e;
 }
 
-.menu {
+.home-sidebar {
     width: 175px;
     height: 100%;
-    background: #f48181;
     position: fixed;
     top: 80px;
     left: 0;
@@ -48,7 +48,6 @@ import siderbar from './siderbar.vue';
 .container {
     height: 100%;
     padding-top: 80px;
-    padding-left: 180px;
-    background: #ccc;
+    padding-left: 175px;
 }
 </style>

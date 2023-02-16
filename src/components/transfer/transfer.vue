@@ -114,7 +114,6 @@
 <script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance, defineProps } from 'vue'
 
-console.log(1111)
 
 const props = defineProps({
   title: {

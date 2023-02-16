@@ -9,12 +9,13 @@
 
 <template>
     <div>
-        sidebar-home
+        <menua></menua>
     </div>
 </template>
 
 <script setup  lang="ts">
-import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
+import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue';
+import menua from '../../components/menu/index.vue'
 </script>
 <style scoped>
 
