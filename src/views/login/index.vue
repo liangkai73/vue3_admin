@@ -30,6 +30,7 @@
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
 import { useRouter } from 'vue-router';
 import { ElButton, ElInput, ElIcon } from 'element-plus'
+import { transfer } from '@/components/transfer'
 import bgUrl from '@/assets/images/login_bg.jpeg'
 
 const loginData = reactive({
@@ -40,9 +41,12 @@ const loginData = reactive({
 const router = useRouter();
 
 const handleLogin = (e: any) => {
-    router.push({
-        path: 'userInfo'
+    transfer({ title: 'welcom to evecomOA!' }).then(() => {
+        router.push({
+            path: 'userInfo'
+        })
     })
+
 }
 </script>
 <style scoped  lang="scss">

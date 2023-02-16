@@ -2,10 +2,23 @@
  * @Author: lanck.xie 
  * @Date: 2023-02-15 14:55:24 
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-02-15 15:00:00
+ * @Last Modified time: 2023-02-16 16:00:51
  * @desc 默认模块变量
  */
 
-
+// rootbody
 $rootFontSize:16px; // 根字体大小
-$rootColor:rgb(48, 49, 51) // 字体颜色
+$rootColor:rgb(48, 49, 51); // 字体颜色
+
+// sidebar
+$menuText: #bfcbd9;
+$menuActiveText: #ffffff;
+$subMenuActiveText: #f4f4f5;
+
+$menuBg: #304156;
+$menuHover: #263445;
+
+$subMenuBg: #1f2d3d;
+$subMenuHover: #001528;
+
+$sideBarWidth: 210px;

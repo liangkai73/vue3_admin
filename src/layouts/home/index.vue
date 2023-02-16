@@ -10,14 +10,16 @@
 <template>
     <div id="app">
         <div class="head">head11</div>
-        <div class="menu">menu111</div>
+        <div class="menu">
+            <siderbar></siderbar>
+        </div>
         <router-view class="container"></router-view>
     </div>
 </template>
 
 <script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
-console.log('load userInfo layout')
+import siderbar from './siderbar.vue';
 </script>
 <style lang="scss" scoped>
 #app {
