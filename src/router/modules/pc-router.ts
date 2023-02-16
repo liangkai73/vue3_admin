@@ -15,8 +15,8 @@ export default [
     component: () => import("@/views/userInfo/index.vue"),
   },
   {
-    path: "/*",
+    path: "*",
     name: "404",
-    component: () => import("@/views/404.vue"),
+    component: () => import("@/views/error/404.vue"),
   },
 ];
