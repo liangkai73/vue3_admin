@@ -9,7 +9,7 @@ import { configType } from "@/themeInit/config";
 import { _layouts } from "@/layouts/index";
 
 /* app初始化函数 */
-export const appInit = (config: configType) => {
+export function appInit(config: configType) {
   const titleEnv: any = {
     development: "开发环境",
   };
@@ -27,10 +27,18 @@ export const appInit = (config: configType) => {
   //     document.head.appendChild(favicon)
   //   }
   //   favicon.href = '/favicon.ico' || '/faviconkb.ico'
-};
+}
 
-/* layout Init */
-export const getLayout = (layouts: _layouts, pathObj: any) => {
+/**
+ *
+ *
+ * @export
+ * @param {_layouts} layouts
+ * @param {*} pathObj
+ * @return {*}
+ * @description 返回基础layou模板
+ */
+export function getLayout(layouts: _layouts, pathObj: any) {
   let { path } = pathObj;
 
   if (path == "/") {
@@ -50,4 +58,4 @@ export const getLayout = (layouts: _layouts, pathObj: any) => {
   console.log("loading layout default");
 
   return layouts._default;
-};
+}

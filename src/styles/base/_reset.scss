@@ -8,9 +8,13 @@ body {
     text-rendering: optimizeLegibility;
     font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
         Microsoft YaHei, Arial, sans-serif;
+    overflow: hidden;
+    font-size: $rootFontSize;
+    color: $rootColor;
 }
 
-#app {
+#app,
+.app {
     height: 100%;
 }
 

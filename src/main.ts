@@ -9,6 +9,9 @@ import "./styles/index.scss";
 import { APP_CONFIG } from "@/themeInit/config";
 import { appInit } from "@/utils/init";
 
+/* 自定义全局组件 */
+import libs from "@/libs";
+
 appInit(APP_CONFIG);
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(libs).mount("#app");

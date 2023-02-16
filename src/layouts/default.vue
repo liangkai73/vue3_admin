@@ -17,7 +17,7 @@
  -->
 
 <template>
-    <div id="app">
+    <div class="app">
         <router-view></router-view>
     </div>
 </template>
@@ -27,7 +27,9 @@ import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
 
 </script>
 <style lang="scss" scoped>
-#app {
+@import url('@/styles/components/layout.scss');
+
+.app {
     width: 100%;
     height: 100%;
 }
