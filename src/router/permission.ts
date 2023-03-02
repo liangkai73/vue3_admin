@@ -2,12 +2,12 @@
  * @Author: lanck.xie
  * @Date: 2023-03-02 10:48:02
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-03-02 11:06:33
+ * @Last Modified time: 2023-03-02 17:01:21
  * @desc 路由权限相关
  */
 import router from "./index";
-import { globalStore, localStore } from "@/utils/store";
-import { WHITELIST } from "./config";
+import { globalStore, localStore, mixStore } from "@/utils/store";
+import { WHITELIST, LOGIN_PATH } from "./config";
 
 // 白名单
 const whiteList = WHITELIST;
@@ -20,8 +20,8 @@ router.beforeEach(async (to, from, next) => {
   const _globalStore = globalStore();
   // 快捷访问
   //   TODO: 这里还没有做TOKEN有效期校验
-  if (_globalStore.APP_TOKEN) {
-    if (to.path === "/login") {
+  if (mixStore.token) {
+    if (to.path === LOGIN_PATH) {
       next("/");
     } else {
       next();
@@ -31,9 +31,9 @@ router.beforeEach(async (to, from, next) => {
     if (whiteList.indexOf(to.path) > -1) {
       next();
     } else {
-      next("/login");
+      next(LOGIN_PATH);
     }
   }
 });
 
-export {};
+export default router;

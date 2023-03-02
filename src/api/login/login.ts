@@ -7,7 +7,7 @@
 
 import net from "@/utils/request";
 import { loginApi } from "@/api/config-api";
-import { globalStore, localStore } from "@/utils/store";
+import { mixStore } from "@/utils/store";
 
 interface loginParams {
   userId: string;
@@ -20,10 +20,8 @@ interface loginParams {
  * @desc 登录接口
  */
 function postLogin(param: loginParams): Promise<any> {
-  const _globalStore = globalStore();
   return net.post(loginApi.postLogin, param).then((res: any) => {
-    _globalStore.setToken(res.oauth_token);
-    localStore.setToken(res.oauth_token);
+    mixStore.token = res.oauth_token;
   });
 }
 

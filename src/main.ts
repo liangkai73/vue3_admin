@@ -11,6 +11,9 @@ import "./styles/index.scss";
 import { APP_CONFIG } from "@/themeInit/config";
 import { appInit } from "@/utils/init";
 
+// 路由守卫
+import "@/router/permission";
+
 /* 自定义全局组件 */
 import libs from "@/libs";
 

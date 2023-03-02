@@ -2,10 +2,10 @@
  * @Author: lanck.xie
  * @Date: 2023-03-02 10:08:46
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-03-02 10:28:58
+ * @Last Modified time: 2023-03-02 17:35:57
  */
 
-import { STORAGE_TOKEN } from "./config";
+import { STORAGE_TOKEN, STORAGE_USER } from "./config";
 
 /**
  * 存储数据
@@ -15,6 +15,7 @@ export const setItem = (key: string, value: string) => {
   if (typeof value === "object") {
     value = JSON.stringify(value);
   }
+  debugger;
   window.localStorage.setItem(key, value);
 };
 
@@ -50,7 +51,7 @@ export const removeAllItem = (key: string) => {
  * 储存token到本地
  */
 function setToken(token: string) {
-  return setItem(STORAGE_TOKEN, token);
+  setItem(STORAGE_TOKEN, token);
 }
 
 /**
@@ -58,11 +59,37 @@ function setToken(token: string) {
  * @returns string
  * 获取本地token
  */
+
 function getToken(): string {
   return getItem(STORAGE_TOKEN);
+}
+/**
+ *
+ * @returns string
+ * 获取本地userInfo
+ */
+function getUserInfo(): object {
+  return JSON.parse(getItem(STORAGE_USER));
+}
+
+/**
+ *
+ * @param userInfo :string
+ * 储存userInfo到本地
+ */
+function setUserInfo(userInfo: string | object | undefined) {
+  if (userInfo == undefined) {
+    return;
+  }
+  if (typeof userInfo != "string") {
+    userInfo = JSON.stringify(userInfo);
+  }
+  setItem(STORAGE_USER, userInfo);
 }
 
 export default {
   setToken,
   getToken,
+  getUserInfo,
+  setUserInfo,
 };
