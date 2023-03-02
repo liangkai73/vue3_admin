@@ -8,7 +8,16 @@
  -->
 
 <template>
-    <div></div>
+    <div>
+
+
+        home child
+        home child
+        home child
+        home child
+        home child
+        home child
+    </div>
 </template>
 
 <script setup  lang="ts">

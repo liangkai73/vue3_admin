@@ -1,6 +1,7 @@
 import axios from "axios";
+import { NetworkHandler } from "./networkHandle";
 
-const net = axios.create({
+const netInstance = axios.create({
   // baseURL: "http://127.0.0.1:4523/m1/2268281-0-default/api",
   // baseURL: "https://mock.apifox.cn/m1/2268281-0-default/api",
   baseURL: import.meta.env.VITE_BASE_API,
@@ -9,16 +10,57 @@ const net = axios.create({
 });
 
 // 响应拦截器
-net.interceptors.response.use((response) => {
-  const { code, msg, data } = response.data;
-
-  //   要根据success的成功与否决定下面的操作
-  if (code == "200") {
-    return response.data;
-  } else {
-    // TODO：业务错误
-    return Promise.reject(new Error(msg));
-  }
+netInstance.interceptors.response.use((response) => {
+  const { data, status } = response;
+  return NetworkHandler.prototype.onErrorHandler(data);
 });
 
-export default net;
+/**
+ *
+ * @param url
+ * @param option
+ * @returns promise
+ * @desc get 请求
+ */
+function get(url: string, option: object) {
+  return netInstance.get(url, option);
+}
+/**
+ *
+ * @param url
+ * @param option
+ * @returns promise
+ * @desc post 请求
+ */
+function post(url: string, option: object) {
+  return netInstance.post(url, option);
+}
+
+/**
+ *
+ * @param url
+ * @param option
+ * @returns promise
+ * @desc post 请求
+ */
+function _delete(url: string, option: object) {
+  return netInstance.delete(url, option);
+}
+
+/**
+ *
+ * @param url
+ * @param option
+ * @returns promise
+ * @desc post 请求
+ */
+function put(url: string, option: object) {
+  return netInstance.put(url, option);
+}
+
+export default {
+  get,
+  post,
+  delete: _delete,
+  put,
+};

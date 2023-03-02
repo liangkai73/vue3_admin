@@ -10,7 +10,7 @@ let layout: any = shallowRef({})
 /* 路由hooks */
 router.afterEach((to, from) => {
   const layoutNew = getLayout(layouts, to);
-  const layoutOld = getLayout(layouts, from);
+  // const layoutOld = getLayout(layouts, from);
 
   layout.value = layoutNew;
 })

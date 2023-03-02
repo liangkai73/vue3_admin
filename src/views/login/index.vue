@@ -16,7 +16,7 @@
                 <p class="mt10">账号：</p>
                 <el-input class="mt10" v-model="loginData.userId" placeholder="Please input user"></el-input>
                 <p class="mt10">密码</p>
-                <el-input class="mt10" v-model="loginData.password" type="password" placeholder="Please input password"
+                <el-input class="mt10" v-model="loginData.passWord" type="password" placeholder="Please input password"
                     show-password />
 
                 <el-button class="mt20" type="primary" @click="handleLogin">login</el-button>
@@ -30,22 +30,33 @@
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
 import { useRouter } from 'vue-router';
 import { ElButton, ElInput, ElIcon } from 'element-plus'
+import { globalStore } from "@/utils/store/index"
 import { transfer } from '@/components/transfer'
+import api from '@/api'
 import bgUrl from '@/assets/images/login_bg.jpeg'
 
 const loginData = reactive({
     userId: '',
-    password: ''
+    passWord: ''
 })
 
 const router = useRouter();
 
+const gloabStore = globalStore();
+
+
+// 登录
 const handleLogin = (e: any) => {
-    transfer({ title: 'welcom to evecomOA!' }).then(() => {
-        router.push({
-            path: 'userInfo'
+    api.login.postLogin(loginData).then((r) => {
+        // 唤起转场
+
+        transfer({ title: 'welcom to evecomOA!' }).then(() => {
+            router.push({
+                path: 'home'
+            })
         })
     })
+
 
 }
 </script>

@@ -7,14 +7,22 @@
 
 import net from "@/utils/request";
 import { loginApi } from "@/api/config-api";
+import { globalStore } from "@/utils/store";
 
-/* 用户登录 */
-function postLogin() {
-  //   return net.get("/category").then((res) => {
-  //     console.log(res);
-  //   });
-  return net.post(loginApi.postLogin, {}).then((res) => {
-    console.log(res);
+interface loginParams {
+  userId: string;
+  passWord: string;
+}
+/**
+ *
+ * @param param
+ * @returns promise
+ * @desc 登录接口
+ */
+function postLogin(param: loginParams): Promise<any> {
+  const _globalStore = globalStore();
+  return net.post(loginApi.postLogin, param).then((res: any) => {
+    _globalStore.setToken(res.oauth_token);
   });
 }
 

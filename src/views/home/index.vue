@@ -10,12 +10,25 @@
 <template>
     <div>
         控制台主页
+        <button @click="linkToChild">btnbtnbtn</button>
     </div>
 </template>
 
 <script setup  lang="ts">
+import { link } from 'fs';
+import { useRouter } from "vue-router"
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
-</script>
-<style scoped>
+import { globalStore } from "@/utils/store/index"
 
-</style>
+const router = useRouter();
+const _gloabStore = globalStore();
+
+console.log(_gloabStore.APP_TOKEN)
+
+const linkToChild = () => {
+    router.push({
+        path: 'home/homeChild'
+    })
+}
+</script>
+<style scoped></style>
