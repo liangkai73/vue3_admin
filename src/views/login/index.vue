@@ -19,7 +19,7 @@
                 <el-input class="mt10" v-model="loginData.passWord" type="password" placeholder="Please input password"
                     show-password />
 
-                <el-button class="mt20" type="primary" @click="handleLogin">login</el-button>
+                <el-button :loading="loading" class="mt20" type="primary" @click="handleLogin">login</el-button>
             </div>
 
         </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup  lang="ts">
-import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
+import { reactive, toRefs, onMounted, getCurrentInstance, ref } from 'vue'
 import { useRouter } from 'vue-router';
 import { ElButton, ElInput, ElIcon } from 'element-plus'
 import { globalStore } from "@/utils/store/index"
@@ -44,13 +44,18 @@ const router = useRouter();
 
 const gloabStore = globalStore();
 
+// 登录动作
+const loading = ref(false)
+
 
 // 登录
 const handleLogin = (e: any) => {
+    loading.value = true;
+
     api.login.postLogin(loginData).then((r) => {
         // 唤起转场
-
         transfer({ title: 'welcom to evecomOA!' }).then(() => {
+            loading.value = false;
             router.push({
                 path: 'home'
             })

@@ -11,7 +11,6 @@ let layout: any = shallowRef({})
 router.afterEach((to, from) => {
   const layoutNew = getLayout(layouts, to);
   // const layoutOld = getLayout(layouts, from);
-
   layout.value = layoutNew;
 })
 
@@ -21,6 +20,4 @@ router.afterEach((to, from) => {
   <component :is="layout"></component>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

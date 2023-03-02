@@ -7,7 +7,7 @@
 
 import net from "@/utils/request";
 import { loginApi } from "@/api/config-api";
-import { globalStore } from "@/utils/store";
+import { globalStore, localStore } from "@/utils/store";
 
 interface loginParams {
   userId: string;
@@ -23,6 +23,7 @@ function postLogin(param: loginParams): Promise<any> {
   const _globalStore = globalStore();
   return net.post(loginApi.postLogin, param).then((res: any) => {
     _globalStore.setToken(res.oauth_token);
+    localStore.setToken(res.oauth_token);
   });
 }
 

@@ -2,7 +2,7 @@
  * @Author: lanck.xie
  * @Date: 2023-02-23 15:04:43
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-02-23 17:14:47
+ * @Last Modified time: 2023-03-02 11:04:20
  */
 
 import { defineStore } from "pinia";
@@ -17,7 +17,7 @@ export default defineStore("globalStore", {
     };
   },
   getters: {
-    APP_TOKEN(): string {
+    APP_TOKEN(): string | undefined {
       return this._APP_TOKEN;
     },
   },
