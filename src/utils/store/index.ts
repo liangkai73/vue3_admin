@@ -13,7 +13,7 @@ class appMixStore {
   constructor() {}
 
   //   获取有效token
-  get token(): string {
+  get token(): string | undefined {
     const _globalStore = globalStore();
     // 感知 pinia
     if (!_globalStore.APP_TOKEN) {
@@ -21,17 +21,19 @@ class appMixStore {
       if (localStore.getToken()) {
         _globalStore.setToken(localStore.getToken());
       } else {
-        return "undefined";
+        return undefined;
       }
     }
     return _globalStore.APP_TOKEN;
   }
 
   //   设置token
-  set token(token: string) {
+  set token(token: string | undefined) {
     const _globalStore = globalStore();
-    _globalStore.setToken(token);
-    localStore.setToken(token);
+    if (token !== undefined) {
+      _globalStore.setToken(token);
+      localStore.setToken(token);
+    }
   }
 
   //   获取有效token

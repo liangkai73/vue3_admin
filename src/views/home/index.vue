@@ -8,8 +8,8 @@
  -->
 
 <template>
-    <div>
-        控制台主页
+    <div class="flex_r_s">
+        <textAnimate>控制台主页</textAnimate>
         <button @click="linkToChild">btnbtnbtn</button>
     </div>
 </template>
@@ -19,6 +19,7 @@ import { link } from 'fs';
 import { useRouter } from "vue-router"
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
 import { globalStore } from "@/utils/store/index"
+import textAnimate from '@/views/dev/components/textAnimate.vue'
 
 const router = useRouter();
 const _gloabStore = globalStore();

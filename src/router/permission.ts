@@ -20,6 +20,7 @@ router.beforeEach(async (to, from, next) => {
   const _globalStore = globalStore();
   // 快捷访问
   //   TODO: 这里还没有做TOKEN有效期校验
+  // debugger;
   if (mixStore.token) {
     if (to.path === LOGIN_PATH) {
       next("/");

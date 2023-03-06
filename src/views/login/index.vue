@@ -8,7 +8,8 @@
  -->
 
 <template>
-    <div class="flex_r login-content" :style="{ backgroundImage: `url(${bgUrl})` }">
+    <!-- <div class="flex_r login-content" :style="{ backgroundImage: `url(${bgUrl})` }"> -->
+    <div class="flex_r login-content login-content-bg ">
         <div class="login-inner flex_r">
             <div class="login-inner-left"></div>
             <div class="login-inner-right flex1 flex_c_s">
@@ -92,5 +93,13 @@ const handleLogin = (e: any) => {
     height: 100%;
     background: #fff;
 
+}
+
+.login-content-bg {
+    background-image: radial-gradient(circle at 86% 7%,
+            rgba(40, 40, 40, 0.04) 0%,
+            rgba(40, 40, 40, 0.04) 50%,
+            rgba(200, 200, 200, 0.04) 50%,
+            rgba(200, 200, 200, 0.04) 100%);
 }
 </style>

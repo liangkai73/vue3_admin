@@ -19,4 +19,10 @@ import libs from "@/libs";
 
 appInit(APP_CONFIG);
 
-createApp(App).use(router).use(createPinia()).use(libs).mount("#app");
+const APP_NODE = createApp(App)
+  .use(router)
+  .use(createPinia())
+  .use(libs)
+  .mount("#app");
+
+(window as any).APP_NODE = APP_NODE;
