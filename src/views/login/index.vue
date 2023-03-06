@@ -67,6 +67,8 @@ const handleLogin = (e: any) => {
 }
 </script>
 <style scoped  lang="scss">
+@import url('./bg.scss');
+
 .login-content {
     width: 100%;
     height: 100%;
@@ -95,11 +97,22 @@ const handleLogin = (e: any) => {
 
 }
 
-.login-content-bg {
-    background-image: radial-gradient(circle at 86% 7%,
-            rgba(40, 40, 40, 0.04) 0%,
-            rgba(40, 40, 40, 0.04) 50%,
-            rgba(200, 200, 200, 0.04) 50%,
-            rgba(200, 200, 200, 0.04) 100%);
-}
+// .login-content-bg {
+//     background-image: radial-gradient(circle at 86% 7%,
+//             rgba(40, 40, 40, 0.04) 0%,
+//             rgba(40, 40, 40, 0.04) 50%,
+//             rgba(200, 200, 200, 0.04) 50%,
+//             rgba(200, 200, 200, 0.04) 100%),
+//         radial-gradient(circle at 15% 16%,
+//             rgba(99, 99, 99, 0.04) 0%,
+//             rgba(99, 99, 99, 0.04) 50%,
+//             rgba(45, 45, 45, 0.04) 50%,
+//             rgba(45, 45, 45, 0.04) 100%),
+//         radial-gradient(circle at 75% 99%,
+//             rgba(243, 243, 243, 0.04) 0%,
+//             rgba(243, 243, 243, 0.04) 50%,
+//             rgba(37, 37, 37, 0.04) 50%,
+//             rgba(37, 37, 37, 0.04) 100%),
+//         linear-gradient(rgb(34, 222, 237), rgb(135, 89, 215));
+// }
 </style>

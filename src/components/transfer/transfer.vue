@@ -113,12 +113,13 @@
 
 <script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance, defineProps } from 'vue'
+import { COMPONENTS_TRANSFER_MSG } from '@/themeInit/config'
 
 
 const props = defineProps({
   title: {
     type: String,
-    default: 'welcome!',
+    default: COMPONENTS_TRANSFER_MSG || 'welcome!',
     required: false
   }
 })
