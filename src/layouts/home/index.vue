@@ -10,8 +10,8 @@
 <template>
     <div id="app">
         <div class="head">head11</div>
-        <siderbar class="home-sidebar"></siderbar>
-        <div class="container">
+        <siderbar class="sidebar-container"></siderbar>
+        <div class="main-container">
             <router-view class="container-inner"></router-view>
         </div>
 
@@ -23,6 +23,8 @@ import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
 import siderbar from './siderbar.vue';
 </script>
 <style lang="scss" scoped>
+@import '@/components/menu/menu.scss';
+
 #app {
     width: 100%;
     height: 100%;
@@ -35,19 +37,5 @@ import siderbar from './siderbar.vue';
     top: 0;
     left: 0;
     background: #b4da6e;
-}
-
-.home-sidebar {
-    width: 175px;
-    height: 100%;
-    position: fixed;
-    top: 80px;
-    left: 0;
-}
-
-.container {
-    height: 100%;
-    padding-top: 80px;
-    padding-left: 175px;
 }
 </style>

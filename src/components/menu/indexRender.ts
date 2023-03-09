@@ -32,15 +32,16 @@ export interface ElMenuItemchild {
 
 let _router: any = null;
 // init mune
-function init(arr: any[], router: any) {
+function init(arr: any[], router: any, context: any) {
   _router = router;
-  return rendElMenu(arr);
+  return rendElMenu(arr, context);
 }
 
 // 渲染 ElMenu
 
-function rendElMenu(arr: ElMenuItemType[]) {
-  return h(ElMenu, { defaultActive: arr[0].path }, () => renderElMenuItem(arr));
+function rendElMenu(arr: ElMenuItemType[], context: any) {
+  const { class: _class } = context;
+  return h(ElMenu, { ...context.attrs }, () => renderElMenuItem(arr));
 }
 
 // 渲染 ElMenuItem
@@ -129,11 +130,12 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup(props, context) {
     const router = useRouter();
+    console.log(context.attrs);
 
     return () => {
-      return init(props.menuArr, router);
+      return init(props.menuArr, router, context);
     };
   },
 });

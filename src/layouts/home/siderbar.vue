@@ -8,8 +8,10 @@
  -->
 
 <template>
-    <div>
-        <menua :menuArr="testArr"></menua>
+    <div class="">
+        <menua :menuArr="testArr" default-active="/home/homeChild" :default-openeds="['/home']"
+            class="el-menu-vertical-demo" :collapse="isCollapse">
+        </menua>
     </div>
 </template>
 
@@ -18,7 +20,7 @@ import { reactive, ref, Ref, toRefs, onMounted, getCurrentInstance } from 'vue';
 import { ElMenuItemType, } from '@/components/menu/indexRender'
 import menua from '../../components/menu/indexRender';
 
-
+const isCollapse = ref(false)
 const testArr: Ref<ElMenuItemType[]> = ref([
     {
         title: '首页',
