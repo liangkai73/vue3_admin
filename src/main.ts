@@ -6,6 +6,7 @@ import { createPinia } from "pinia";
 
 import "element-plus/theme-chalk/dark/css-vars.css"; // dark模式
 import "element-plus/theme-chalk/el-var.css";
+import "element-plus/theme-chalk/el-icon.css";
 import "./styles/index.scss";
 
 import { APP_CONFIG } from "@/themeInit/config";
@@ -19,10 +20,7 @@ import libs from "@/libs";
 
 appInit(APP_CONFIG);
 
-const APP_NODE = createApp(App)
-  .use(router)
-  .use(createPinia())
-  .use(libs)
-  .mount("#app");
+const APP_NODE = createApp(App);
 
+APP_NODE.use(router).use(createPinia()).use(libs).mount("#app");
 (window as any).APP_NODE = APP_NODE;

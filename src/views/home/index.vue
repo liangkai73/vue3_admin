@@ -24,7 +24,6 @@ import textAnimate from '@/views/dev/components/textAnimate.vue'
 const router = useRouter();
 const _gloabStore = globalStore();
 
-console.log(_gloabStore.APP_TOKEN)
 
 const linkToChild = () => {
     router.push({

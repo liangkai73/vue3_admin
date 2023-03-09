@@ -2,7 +2,7 @@
  * @Author: lanck.xie
  * @Date: 2023-03-02 10:08:46
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-03-02 17:35:57
+ * @Last Modified time: 2023-03-08 10:13:02
  */
 
 import { STORAGE_TOKEN, STORAGE_USER } from "./config";
@@ -15,7 +15,7 @@ export const setItem = (key: string, value: string) => {
   if (typeof value === "object") {
     value = JSON.stringify(value);
   }
-  debugger;
+  // debugger;
   window.localStorage.setItem(key, value);
 };
 

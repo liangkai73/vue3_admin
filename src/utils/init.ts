@@ -2,7 +2,7 @@
  * @Author: lanck.xie
  * @Date: 2023-02-14 10:40:59
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-03-02 10:44:55
+ * @Last Modified time: 2023-03-08 10:15:00
  */
 
 import { configType } from "@/themeInit/config";
@@ -42,7 +42,7 @@ export function getLayout(layouts: _layouts, pathObj: any) {
   let { path } = pathObj;
 
   if (path == "/") {
-    return layouts._default;
+    return layouts.home;
   }
 
   if (path[0] == "/") path = path.substring(1);
