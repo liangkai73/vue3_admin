@@ -46,8 +46,8 @@ const testArr: Ref<ElMenuItemType[]> = ref([
         path: '/home/homeChild',
         icon: 'SwitchButton',
     }, {
-        title: '组件预览',
-        path: '/dev',
+        title: 'page动效',
+        path: '/dev/testPage',
         icon: 'SwitchButton',
     }
 ])

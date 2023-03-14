@@ -313,6 +313,12 @@
 
 }
 
+// 常用动效class
+
+.fadeIn80 {
+    animation: mainUp ease 1s;
+}
+
 .tran_lazy {
     transition: all .8s .7s cubic-bezier(0.600, 0.045, 0.165, 1.000);
 }
@@ -347,7 +353,7 @@
 
 @-webkit-keyframes mainDown {
     0% {
-        transform: translateY(-40px);
+        transform: translateY(-80px);
         opacity: 0;
     }
 
@@ -371,24 +377,24 @@
 
 @-webkit-keyframes mainUp {
     0% {
-        transform: translateY(120px);
+        transform: translateX(35px) translateY(80px);
         opacity: 0;
     }
 
     100% {
-        transform: translateY(0);
+        transform: translateX(0) translateY(0);
         opacity: 1;
     }
 }
 
 @keyframes mainUp {
     0% {
-        transform: translateY(80px);
+        transform: translateX(35px) translateY(80px);
         opacity: 0;
     }
 
     100% {
-        transform: translateY(0);
+        transform: translateX(0) translateY(0);
         opacity: 1;
     }
 }

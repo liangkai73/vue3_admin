@@ -1,21 +1,17 @@
 <!--
 /**
 * Copyright (c) 2022 Copyright tj All Rights Reserved.
-* Author: xieliangkai
-* Date: 2023-02-13 11:57
+* Author: lanck
+* Date: 2023-03-13 11:23
 * Desc: 
 */
  -->
 
 <template>
-    <div>首页内容</div>
+    <!-- <div v-if=""></div> -->
 </template>
 
-<script setup lang="ts">
+<script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
-import api from '@/api/index'
-
-
-
 </script>
-<style scoped></style>
+<style scoped lang="scss" ></style>

@@ -132,8 +132,6 @@ export default defineComponent({
   },
   setup(props, context) {
     const router = useRouter();
-    console.log(context.attrs);
-
     return () => {
       return init(props.menuArr, router, context);
     };

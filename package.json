@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node ./node/buildRouter.js && vite --host",
+    "route": "node ./node/buildRouter.js",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },

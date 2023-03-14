@@ -17,10 +17,14 @@ import "@/router/permission";
 
 /* 自定义全局组件 */
 import libs from "@/libs";
+// 自定义指令
+import { lzRender } from "@/views/dev/testPage/animateRender";
 
 appInit(APP_CONFIG);
 
 const APP_NODE = createApp(App);
+
+APP_NODE.directive("lzrender", lzRender);
 
 APP_NODE.use(router).use(createPinia()).use(libs).mount("#app");
 (window as any).APP_NODE = APP_NODE;
