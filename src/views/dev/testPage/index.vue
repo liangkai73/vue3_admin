@@ -9,8 +9,9 @@
 
 <template>
     <div class="page-box">
-        <div v-for="(item, index) in bgarr" v-lzrender="`haha`" class="img-box mt40 flex_c"
-            :style="{ backgroundImage: `url(${item})` }">
+        <div v-for="(item, index) in bgarr" v-aRender="{
+            class: '1111'
+        }" class="img-box mt40 flex_c" :style="{ backgroundImage: `url(${item})` }">
 
             <div class="img-box-inner">
                 111111

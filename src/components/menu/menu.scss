@@ -9,15 +9,6 @@
 @import '../../styles/var/menu_default_var.scss'; // 默认样式
 @import '../../themeInit/styles/menu_var.scss'; // 主题覆盖样式
 
-
-.main-container {
-    min-height: 100%;
-    transition: margin-left 0.28s;
-    margin-left: $sideBarWidth;
-    position: relative;
-    padding-top: 80px;
-}
-
 .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
