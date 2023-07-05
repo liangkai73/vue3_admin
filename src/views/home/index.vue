@@ -8,9 +8,10 @@
  -->
 
 <template>
-    <div class="flex_r_s">
+    <div class="container-inner">
         <textAnimate>控制台主页</textAnimate>
         <button @click="linkToChild">btnbtnbtn</button>
+        <div style="height: 1000px;"></div>
     </div>
 </template>
 
@@ -31,4 +32,12 @@ const linkToChild = () => {
     })
 }
 </script>
-<style scoped></style>
+<style scoped>
+.container-inner {
+    background: #fff;
+    height: 100%;
+    overflow: auto;
+    border-radius: 15px;
+    padding: 20px;
+}
+</style>

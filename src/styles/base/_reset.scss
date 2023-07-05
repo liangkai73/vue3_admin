@@ -43,6 +43,10 @@ div:focus {
     outline: none;
 }
 
+div {
+    box-sizing: border-box;
+}
+
 .clearfix {
     &:after {
         visibility: hidden;

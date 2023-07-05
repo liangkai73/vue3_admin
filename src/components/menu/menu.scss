@@ -6,19 +6,10 @@
  */
 
 
-@import '../../styles/var/menu_default_var.scss'; // 默认样式
+@import '../../styles/var/_menu_default_var.scss'; // 默认样式
 @import '../../themeInit/styles/menu_var.scss'; // 主题覆盖样式
 
 .sidebar-container {
-    transition: width 0.28s;
-    width: $sideBarWidth !important;
-    height: 100%;
-    position: fixed;
-    top: 80px;
-    bottom: 0;
-    left: 0;
-    z-index: 1001;
-    overflow: hidden;
 
     // 重置 element-plus 的css
     .horizontal-collapse-transition {
@@ -65,7 +56,6 @@
 
     .el-menu {
         border: none;
-        height: 100%;
         width: 100% !important;
     }
 

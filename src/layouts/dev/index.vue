@@ -8,8 +8,7 @@
  -->
 
 <template>
-    <div id="app">
-
+    <div>
         <siderbar class="sidebar-container"></siderbar>
         <div class="main-container">
             <router-view class="container-inner"></router-view>
@@ -41,6 +40,8 @@ import siderbar from './siderbar.vue';
 
 .main-container {
     min-height: 100%;
+    height: 100vh;
+    overflow: auto;
     transition: margin-left 0.28s;
     margin-left: $sideBarWidth;
     position: relative;

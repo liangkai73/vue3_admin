@@ -8,34 +8,45 @@
  -->
 
 <template>
-    <div id="app">
-        <div class="head">head11</div>
-        <siderbar class="sidebar-container"></siderbar>
+    <div class="app">
+        <siderbar class="sidebar-container" v-if="true"></siderbar>
+        <head1 class="head-container"></head1>
         <div class="main-container">
             <router-view class="container-inner"></router-view>
         </div>
-
     </div>
 </template>
 
 <script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
 import siderbar from './siderbar.vue';
+import head1 from './head.vue'
 </script>
 <style lang="scss" scoped>
-@import '@/components/menu/menu.scss';
-
-#app {
-    width: 100%;
+.app {
+    width: 100vw;
     height: 100%;
+    background: #f6f6f6;
+    overflow: hidden;
+    position: relative;
 }
 
-.head {
-    width: 100%;
-    height: 80px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #b4da6e;
+.main-container {
+    width: calc(100vw - 210px);
+    overflow-x: hidden;
+    min-height: 500px;
+    height: calc(100vh - 80px);
+    transition: margin-left 0.28s;
+    margin-left: 210px;
+    position: relative;
+    padding: 0 10px 10px 0;
+    margin-top: 80px;
+}
+
+.container-inner {
+    background: #fff;
+    height: 100%;
+    overflow: auto;
+    border-radius: 15px;
 }
 </style>

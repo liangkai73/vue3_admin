@@ -55,7 +55,7 @@ const handleLogin = (e: any) => {
 
     api.login.postLogin(loginData).then((r) => {
         // 唤起转场
-        transfer({ title: 'welcom to evecomOA!' }).then(() => {
+        transfer({ title: 'welcom to Login!' }).then(() => {
             loading.value = false;
             router.push({
                 path: 'home'
