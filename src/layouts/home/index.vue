@@ -9,9 +9,10 @@
 
 <template>
     <div class="app">
-        <siderbar class="sidebar-container" v-if="true"></siderbar>
+
         <head1 class="head-container"></head1>
         <div class="main-container">
+            <siderbar class="sidebar-container" v-if="true"></siderbar>
             <router-view class="container-inner"></router-view>
         </div>
     </div>
@@ -32,19 +33,21 @@ import head1 from './head.vue'
 }
 
 .main-container {
-    width: calc(100vw - 210px);
+    width: 100%;
     overflow-x: hidden;
     min-height: 500px;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 50px);
     transition: margin-left 0.28s;
     margin-left: 210px;
     position: relative;
     padding: 0 10px 10px 0;
-    margin-top: 80px;
+    margin-top: 50px;
+    background-color: #e4edf0;
 }
 
 .container-inner {
-    background: #fff;
+    width: calc(100vw - 210px);
+    // background: #DCE6E3;
     height: 100%;
     overflow: auto;
     border-radius: 15px;

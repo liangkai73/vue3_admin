@@ -34,10 +34,8 @@ const linkToChild = () => {
 </script>
 <style scoped>
 .container-inner {
-    background: #fff;
     height: 100%;
     overflow: auto;
-    border-radius: 15px;
     padding: 20px;
 }
 </style>

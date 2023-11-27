@@ -14,9 +14,9 @@
             <menua :menuArr="testArr" default-active="/home/homeChild33333" :default-openeds="['/home']"
                 class="menu-vertical-t1" :collapse="isCollapse">
             </menua>
-            <div>
+            <!-- <div>
                 <div class="menue-collapse" @click="() => { isCollapse = !isCollapse }">tiger</div>
-            </div>
+            </div> -->
         </div>
 
 
@@ -38,7 +38,7 @@ const testArr: Ref<ElMenuItemType[]> = ref([
     },
 
     {
-        title: '用户中心',
+        title: '用户管理',
         path: '/elAssociation',
         icon: 'SwitchButton',
     },
@@ -68,13 +68,13 @@ const testArr: Ref<ElMenuItemType[]> = ref([
 @property --bg-colorA {
     syntax: '<color>';
     inherits: false;
-    initial-value: #fff;
+    initial-value: #DCE3E7;
 }
 
 @property --bg-colorB {
     syntax: '<color>';
     inherits: false;
-    initial-value: #fff;
+    initial-value: #DCE3E7;
 }
 
 @property --border-color {
@@ -86,13 +86,13 @@ const testArr: Ref<ElMenuItemType[]> = ref([
 
 
 .menu-vertical-t1 {
-    --el-menu-active-color: #ed8249;
-    --menu-bg-color: #f9ddd3;
+    --el-menu-active-color: #1F873A;
+    --menu-bg-color: #ffffff;
 
     .el-sub-menu__title,
     .el-menu-item {
         border-left: 3px solid var(--border-color);
-        transition: 0.5s linear color, 0.5s linear --bg-colorA, 0.75s linear --bg-colorB, 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) --border-color;
+        // transition: 0.5s linear color, 0.5s linear --bg-colorA, 0.75s linear --bg-colorB, 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) --border-color;
         background: linear-gradient(90deg, var(--bg-colorA) 0%, 70%, var(--bg-colorB) 100%);
 
         &:hover {
@@ -113,14 +113,14 @@ const testArr: Ref<ElMenuItemType[]> = ref([
 }
 
 .sidebar-container {
-    padding: 10px;
-    height: calc(100vh - 20px);
+    // padding: 10px;
+    height: calc(100vh - 50px);
     min-height: 500px;
     transition: width 0.28s;
     width: $sideBarWidth !important;
-    height: 100%;
+    background: #DCE3E7;
     position: fixed;
-    top: 0;
+    top: 50;
     bottom: 0;
     left: 0;
     z-index: 1001;
@@ -129,21 +129,21 @@ const testArr: Ref<ElMenuItemType[]> = ref([
     .sidebar-inner {
         width: 100%;
         height: 100%;
-        background: #fff;
-        border-radius: 15px;
+        // background: #fff;
+        // border-radius: 15px;
         overflow: hidden;
         position: relative;
     }
 
-    .menue-collapse {
-        width: 40px;
-        height: 40px;
-        background: #f6f6f6;
-        position: absolute;
-        right: 0;
-        bottom: 160px;
-        border-radius: 50%;
-        transform: translateX(50%);
-    }
+    // .menue-collapse {
+    //     width: 40px;
+    //     height: 40px;
+    //     background: #f6f6f6;
+    //     position: absolute;
+    //     right: 0;
+    //     bottom: 160px;
+    //     border-radius: 50%;
+    //     transform: translateX(50%);
+    // }
 }
 </style>
