@@ -4,7 +4,9 @@
  * @Last Modified by: lanck.xie
  * @Last Modified time: 2023-03-02 10:19:16
  */
-
+export interface configType {
+  HTML_TITLE: string; // htmlTitle
+}
 // html - head - title 设置
 export const HTML_TITLE: configType["HTML_TITLE"] = "LKCMS_";
 
@@ -18,9 +20,6 @@ export const PC_DEVICE_WATCH = false;
 
 export const COMPONENTS_TRANSFER_MSG = "welcome to lanckOA";
 
-export interface configType {
-  HTML_TITLE: string; // htmlTitle
-}
 export const APP_CONFIG: configType = {
   HTML_TITLE,
 };

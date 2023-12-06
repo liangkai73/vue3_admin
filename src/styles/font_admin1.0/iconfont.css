@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4349785 */
+  src: url('iconfont.woff2?t=1701160512770') format('woff2'),
+       url('iconfont.woff?t=1701160512770') format('woff'),
+       url('iconfont.ttf?t=1701160512770') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-caidan:before {
+  content: "\e6e6";
+}
+
+.icon-e-box:before {
+  content: "\e7a4";
+}
+
+.icon-charge1:before {
+  content: "\e7a5";
+}
+
+.icon-user:before {
+  content: "\e7a7";
+}
+
+.icon-charging-station:before {
+  content: "\e7a8";
+}
+
+.icon-home1:before {
+  content: "\e7aa";
+}
+
+.icon-e-car:before {
+  content: "\e7ab";
+}
+
+.icon-ops:before {
+  content: "\e7ac";
+}
+
+.icon-finance:before {
+  content: "\e7ad";
+}
+
+.icon-peoples:before {
+  content: "\e7ae";
+}
+
+.icon-ticket:before {
+  content: "\e7a9";
+}
+
+.icon-cooperative:before {
+  content: "\e7a6";
+}
+

@@ -20,9 +20,12 @@ interface loginParams {
  * @desc 登录接口
  */
 function postLogin(param: loginParams): Promise<any> {
+  mixStore.token = "test_token";
   return net.post(loginApi.postLogin, param).then((res: any) => {
     mixStore.token = res.oauth_token;
   });
 }
-
-export default { postLogin };
+function loginout() {
+  mixStore.token = "";
+}
+export default { postLogin, loginout };

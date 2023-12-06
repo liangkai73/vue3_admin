@@ -34,30 +34,57 @@ const testArr: Ref<ElMenuItemType[]> = ref([
     {
         title: '首页',
         path: '/home',
-        icon: 'Open',
+        icon: 'home1',
     },
 
     {
         title: '用户管理',
-        path: '/elAssociation',
-        icon: 'SwitchButton',
+        path: '/userInfo',
+        icon: 'user',
     },
     {
-        title: '用户中心1',
-        path: '/dev/testPage/lazyRender',
-        icon: 'SwitchButton',
+        title: '订单管理',
+        path: '/order',
+        icon: 'order',
+        children: [{
+            title: '充电订单',
+            path: '/order/chargeOrder'
+        }]
+    },
+    {
+        title: '充电站管理',
+        path: '/charge',
+        icon: 'charging-station',
     }
     ,
     {
-        title: '用户中心2',
-        path: '/dev/elAssociation',
-        icon: 'SwitchButton',
+        title: '运维管理',
+        path: '/devOps',
+        icon: 'ops',
     }
     ,
     {
-        title: 'page动效',
-        path: '/dev/testPage',
-        icon: 'SwitchButton',
+        title: '财务管理',
+        path: '/finance',
+        icon: 'finance',
+    }
+    ,
+    {
+        title: '活动管理',
+        path: '/activity',
+        icon: 'ticket',
+    }
+    ,
+    {
+        title: '员工配置',
+        path: '/staff',
+        icon: 'peoples',
+    }
+    ,
+    {
+        title: '合作伙伴',
+        path: '/cooperation',
+        icon: 'cooperative',
     }
 ])
 </script>

@@ -9,9 +9,8 @@
 
 <template>
     <div class="container-inner">
-        <textAnimate>控制台主页</textAnimate>
-        <button @click="linkToChild">btnbtnbtn</button>
-        <div style="height: 1000px;"></div>
+        <textAnimate>首页数据大屏</textAnimate>
+
     </div>
 </template>
 
@@ -28,7 +27,7 @@ const _gloabStore = globalStore();
 
 const linkToChild = () => {
     router.push({
-        path: 'home/homeChild'
+        path: 'home'
     })
 }
 </script>

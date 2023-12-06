@@ -34,9 +34,11 @@
   left: 0;
   bottom: 0;
   right: 0;
+  color: #007c37;
+  font-size: 50px;
   margin: auto;
-  width: 400px;
-  height: 40px;
+  width: 550px;
+  height: 60px;
   text-align: center;
   display: inline-block;
   animation: titleAnimate cubic-bezier(0.075, 0.82, 0.165, 1) 2.5s;

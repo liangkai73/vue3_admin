@@ -20,7 +20,7 @@
       "_pinia/*": ["src/pinia/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/buildRouter.js", "src/buildRouter.js"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/components/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/buildRouter.js", "src/buildRouter.js"],
   "references": [{
     "path": "./tsconfig.node.json"
   }]

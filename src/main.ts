@@ -3,10 +3,12 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
+import components from "./libs";
 
 import "element-plus/theme-chalk/dark/css-vars.css"; // dark模式
 import "element-plus/theme-chalk/el-var.css";
 import "element-plus/theme-chalk/el-icon.css";
+import "@/assets/icons/iconfont.js";
 import "./styles/index.scss";
 
 import { APP_CONFIG } from "@/themeInit/config";
@@ -26,5 +28,5 @@ const APP_NODE = createApp(App);
 
 APP_NODE.directive("aRender", animateRender);
 
-APP_NODE.use(router).use(createPinia()).use(libs).mount("#app");
+APP_NODE.use(components).use(router).use(createPinia()).use(libs).mount("#app");
 (window as any).APP_NODE = APP_NODE;

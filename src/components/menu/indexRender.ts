@@ -14,7 +14,7 @@ import { useRouter } from "vue-router";
 
 import { ElMenu, ElMenuItem, ElSubMenu, ElMenuItemGroup } from "element-plus";
 
-import icon from "@/libs/icon/index.vue";
+import icon from "@/libs/svgIcon/index.vue";
 
 export interface ElMenuItemType {
   title: string;
@@ -66,7 +66,7 @@ function renderElMenuItem(arr: ElMenuItemType[]) {
         };
         return h(
           ElMenuItem,
-          { ...cprops },
+          { ...cprops, style: { paddingLeft: "68px" } },
           {
             default: () => createTitleNode(cNode),
           }
@@ -117,7 +117,7 @@ function createTitleNode(obj: ElMenuItemType | ElMenuItemchild): VNode[] {
   let hArr = [];
 
   if (obj.icon) {
-    hArr.push(h(icon, { name: obj.icon }));
+    hArr.push(h(icon, { icon: obj.icon, style: { fontSize: "20px" } }));
   }
   hArr.push(h("span", obj.title));
   return hArr;

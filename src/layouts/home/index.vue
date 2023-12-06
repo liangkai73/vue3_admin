@@ -50,6 +50,6 @@ import head1 from './head.vue'
     // background: #DCE6E3;
     height: 100%;
     overflow: auto;
-    border-radius: 15px;
+    // border-radius: 15px;
 }
 </style>

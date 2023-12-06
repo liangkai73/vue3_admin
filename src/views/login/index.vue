@@ -13,14 +13,13 @@
         <div class="login-inner flex_r">
             <div class="login-inner-left"></div>
             <div class="login-inner-right flex1 flex_c_s">
-                <h3> Log in</h3>
+                <img src="@/assets/images/logo-1024@2x.png" style="width:220px;margin-bottom: 25px;">
                 <p class="mt10">账号：</p>
-                <el-input class="mt10" v-model="loginData.userId" placeholder="Please input user"></el-input>
+                <el-input class="mt10" v-model="loginData.userId" placeholder="请输入账号"></el-input>
                 <p class="mt10">密码</p>
-                <el-input class="mt10" v-model="loginData.passWord" type="password" placeholder="Please input password"
-                    show-password />
+                <el-input class="mt10" v-model="loginData.passWord" type="password" placeholder="请输入密码" show-password />
 
-                <el-button :loading="loading" class="mt20" type="primary" @click="handleLogin">login</el-button>
+                <el-button :loading="loading" class="mt40" type="primary" @click="handleLogin">登录</el-button>
             </div>
 
         </div>
@@ -52,15 +51,26 @@ const loading = ref(false)
 // 登录
 const handleLogin = (e: any) => {
     loading.value = true;
-
-    api.login.postLogin(loginData).then((r) => {
-        // 唤起转场
-        transfer({ title: 'welcom to Login!' }).then(() => {
-            loading.value = false;
+    setTimeout(() => {
+        loading.value = false;
+        transfer({ title: 'welcom to Ppaila!' }).then(() => {
             router.push({
                 path: 'home'
             })
         })
+    }, 1000)
+
+
+    api.login.postLogin(loginData).then((r) => {
+        TODO: // 临时关
+        // // 唤起转场
+        // transfer({ title: 'welcom to Login!' }).then(() => {
+        //     loading.value = false;
+        //     router.push({
+        //         path: 'home'
+        //     })
+        // })
+        console.log('login')
     })
 
 
