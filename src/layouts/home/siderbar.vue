@@ -53,7 +53,7 @@ const testArr: Ref<ElMenuItemType[]> = ref([
     },
     {
         title: '充电站管理',
-        path: '/charge',
+        path: '/chargeStation',
         icon: 'charging-station',
     }
     ,
