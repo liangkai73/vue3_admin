@@ -2,7 +2,7 @@
  * @Author: lanck.xie
  * @Date: 2023-02-15 15:42:47
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-12-04 16:53:36
+ * @Last Modified time: 2023-12-11 10:05:15
  * @desc 通用组件注册
  */
 import svgIcon from "./svgIcon/index.vue";

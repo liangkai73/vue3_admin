@@ -34,6 +34,13 @@ let _router: any = null;
 // init mune
 function init(arr: any[], router: any, context: any) {
   _router = router;
+  //
+  // console.dir(router);
+  // const now_router = router.currentRoute.value;
+  // console.dir(context);
+  // console.dir(context.attrs);
+  // console.dir(context.attrs.defaultActive);
+
   return rendElMenu(arr, context);
 }
 

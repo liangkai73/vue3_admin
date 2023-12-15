@@ -11,7 +11,7 @@
     <pageView>
         <template #head>
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/chargeStation' }">电站列表</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: 'cooperation/manageList' }">代理商列表</el-breadcrumb-item>
             </el-breadcrumb>
         </template>
 
@@ -23,7 +23,7 @@
             <el-select v-model="inputParmas.deposit" placeholder="请选择">
                 <el-option v-for="item in options_deposit" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <span style="margin:0 10px 0 16px;">所属代理商</span>
+            <span style="margin:0 10px 0 16px;">类型</span>
             <el-select v-model="inputParmas.date" placeholder="请选择">
                 <el-option v-for="item in options_date" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
@@ -37,25 +37,20 @@
         <card class="table-container mt20" :gutter="16">
             <div class="flex_r_s">
                 <el-button type="primary" style="margin-left: 16px;" @click="listBtnHandle('create')">新增</el-button>
-                <el-button style="margin-left: 16px;">报表导出</el-button>
-                <el-button style="margin-left: 16px;">删除</el-button>
-
             </div>
             <div class="mt20">
                 <el-table :data="tableData" style="width: 100%">
                     <el-table-column prop="id" label="ID" width="100" />
-                    <el-table-column prop="wxname" label="电站编号" />
-                    <el-table-column prop="name" label="名称" />
+                    <el-table-column prop="wxname" label="代理商名称" />
                     <el-table-column prop="phone" label="所属区域" />
-                    <el-table-column prop="deposit" label="电站地址" />
-                    <el-table-column prop="package" label="电桩数" />
-                    <el-table-column prop="daili" label="所属代理商" />
+                    <el-table-column prop="deposit" label="类型" />
+                    <el-table-column prop="package" label="站点名称" />
+                    <el-table-column prop="daili" label="手机号" />
                     <el-table-column prop="date" label="创建时间" />
                     <el-table-column label="操作" width="350">
                         <template #default="scope">
-                            <el-button size="small" @click="handleOrder('detail', scope.row)">详情</el-button>
-                            <el-button size="small" @click="handleOrder('charge', scope.row)">编辑</el-button>
-                            <el-button size="small" type="danger" @click="handleOrder('disable', scope.row)">停用</el-button>
+                            <el-button size="small" @click="handleOrder('detail', scope.row)">账单查询</el-button>
+                            <el-button size="small" @click="handleOrder('charge', scope.row)">设备清单</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -105,22 +100,22 @@ const options_date = [
 const tableData = [
     {
         id: '1',
-        wxname: 'N231069997',
+        wxname: '李四',
         name: 'n23电站',
         phone: '福建省福州市鼓楼区',
-        deposit: '五一广场XXX路XX号',
-        package: '20',
-        daili: "网易",
+        deposit: '充电站',
+        package: '五一广场XXX路XX号电站',
+        daili: "156816659791",
         date: '2021-04-25 14:00:00',
     },
     {
         id: '2',
-        wxname: 'N231069997',
+        wxname: '王五',
         name: 'n23电站',
         phone: '福建省福州市鼓楼区',
-        deposit: '五一广场XXX路XX号',
-        package: '20',
-        daili: "网易",
+        deposit: '充电站',
+        package: '五一广场XXX路XX号电站',
+        daili: "156816659791",
         date: '2021-04-25 14:00:00',
     }
 ]

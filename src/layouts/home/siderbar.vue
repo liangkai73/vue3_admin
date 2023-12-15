@@ -11,12 +11,8 @@
     <div class="sidebar-container">
 
         <div class="sidebar-inner">
-            <menua :menuArr="testArr" default-active="/home/homeChild33333" :default-openeds="['/home']"
-                class="menu-vertical-t1" :collapse="isCollapse">
+            <menua :menuArr="testArr" :default-active="activePath" class="menu-vertical-t1" :collapse="isCollapse">
             </menua>
-            <!-- <div>
-                <div class="menue-collapse" @click="() => { isCollapse = !isCollapse }">tiger</div>
-            </div> -->
         </div>
 
 
@@ -28,6 +24,8 @@
 import { reactive, ref, Ref, toRefs, onMounted, getCurrentInstance } from 'vue';
 import { ElMenuItemType, } from '@/components/menu/indexRender'
 import menua from '../../components/menu/indexRender';
+import { useRouter } from 'vue-router';
+
 
 const isCollapse = ref(false)
 const testArr: Ref<ElMenuItemType[]> = ref([
@@ -55,12 +53,29 @@ const testArr: Ref<ElMenuItemType[]> = ref([
         title: '充电站管理',
         path: '/chargeStation',
         icon: 'charging-station',
+        children: [{
+            title: '电站列表',
+            path: '/chargeStation',
+        },
+        {
+            title: '监控日志',
+            path: '/chargeStation/log'
+        },
+        {
+            title: '电量流水',
+            path: '/chargeStation/statement'
+        }
+        ]
     }
     ,
     {
         title: '运维管理',
         path: '/devOps',
         icon: 'ops',
+        children: [{
+            title: '充电桩预警',
+            path: '/devOps/chargeWarning'
+        }]
     }
     ,
     {
@@ -73,6 +88,11 @@ const testArr: Ref<ElMenuItemType[]> = ref([
         title: '活动管理',
         path: '/activity',
         icon: 'ticket',
+        children: [{
+            title: '优惠券管理',
+            path: '/activity/coupon',
+        }
+        ]
     }
     ,
     {
@@ -85,8 +105,24 @@ const testArr: Ref<ElMenuItemType[]> = ref([
         title: '合作伙伴',
         path: '/cooperation',
         icon: 'cooperative',
+        children: [{
+            title: '区域管理',
+            path: '/cooperation/areaManage'
+        },
+        {
+            title: '代理商列表',
+            path: '/cooperation/manageList'
+        }]
     }
 ])
+//  初始化activePath
+const activePath = ref('');
+const router = useRouter();
+const nowRouter = router.currentRoute.value;
+activePath.value = nowRouter.fullPath;
+
+
+
 </script>
 
 <style lang="scss">

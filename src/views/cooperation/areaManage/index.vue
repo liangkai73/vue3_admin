@@ -3,28 +3,21 @@
 * Copyright (c) 2022 Copyright tj All Rights Reserved.
 * Author: lanck
 * Date: 2023-02-15 09:18
-* Desc: 员工管理
+* Desc: 区域管理
 */
  -->
 
 <template>
-    <pageView title="用户管理">
+    <pageView title="区域管理">
         <template #head>
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/userInfo' }">用户管理</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/cooperation/areaManage' }">区域管理</el-breadcrumb-item>
             </el-breadcrumb>
         </template>
         <!-- top 过滤筛选条件 -->
         <div class="table-top-limit flex_r_s">
+            <span style="margin:0 10px 0 16px;">搜索</span>
             <el-input type="text" style="width: 200px;" placeholder="请输入" v-model="inputParmas.name" />
-            <span style="margin:0 10px 0 16px;">押金</span>
-            <el-select v-model="inputParmas.deposit" placeholder="请选择">
-                <el-option v-for="item in options_deposit" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
-            <span style="margin:0 10px 0 16px;">日期</span>
-            <el-select v-model="inputParmas.date" placeholder="请选择">
-                <el-option v-for="item in options_date" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
             <el-button style="margin-left: 16px;">查询</el-button>
 
 
@@ -34,17 +27,12 @@
             <div class="table-inner">
                 <el-table :data="tableData" style="width: 100%">
                     <el-table-column prop="id" label="ID" width="100" />
-                    <el-table-column prop="wxname" label="微信名" />
-                    <el-table-column prop="name" label="实名" />
-                    <el-table-column prop="phone" label="手机号" />
-                    <el-table-column prop="deposit" label="押金" />
-                    <el-table-column prop="package" label="当前套餐" />
-                    <el-table-column prop="date" label="注册时间" />
+                    <el-table-column prop="wxname" label="区域名称" />
+                    <el-table-column prop="package" label="行政区域划分" />
                     <el-table-column prop="date" label="操作" width="350">
                         <template #default="scope">
-                            <el-button size="small" @click="handleOrder('detail', scope.row)">详情</el-button>
-                            <el-button size="small" @click="handleOrder('charge', scope.row)">充电记录</el-button>
-                            <el-button size="small" type="danger" @click="handleOrder('disable', scope.row)">禁用</el-button>
+                            <el-button size="small" @click="handleOrder('detail', scope.row)">编辑</el-button>
+                            <el-button size="small" type="danger" @click="handleOrder('disable', scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -94,11 +82,11 @@ const options_date = [
 const tableData = [
     {
         id: '1',
-        wxname: 'zhangnozhi008',
+        wxname: '福建省',
         name: '张博智',
         phone: '18869878798',
         deposit: '300.00',
-        package: '新客体验套餐2023版',
+        package: '宁德市',
         date: '2021-04-25 14:00:00',
     }
 ]

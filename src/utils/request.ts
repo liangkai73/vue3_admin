@@ -38,7 +38,7 @@ netInstance.interceptors.response.use((response) => {
  * @returns promise
  * @desc get 请求
  */
-function get(url: string, option: object) {
+function get(url: string, option?: object) {
   return netInstance.get(url, option);
 }
 /**
