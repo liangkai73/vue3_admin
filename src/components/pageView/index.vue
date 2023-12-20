@@ -11,7 +11,7 @@
     <div class="page-view">
         <div class="page-view-head flex_r_s">
             <slot name="head"></slot>
-            <span v-if="!$slots.head"> {{ title }}</span>
+            <span class="head-title" v-if="!$slots.head"> {{ title }}</span>
         </div>
         <slot></slot>
 
@@ -33,6 +33,10 @@ const { title } = defineProps({
     .page-view-head {
         width: 100%;
         height: 50px;
+
+        .head-title {
+            font-size: 18px;
+        }
     }
 }
 </style>

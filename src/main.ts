@@ -4,6 +4,7 @@ import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
 import components from "./libs";
+import echarts from "@/utils/echart";
 
 import "element-plus/theme-chalk/dark/css-vars.css"; // dark模式
 import "element-plus/theme-chalk/el-var.css";

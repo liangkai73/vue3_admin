@@ -14,8 +14,15 @@
             <svg-icon icon="menu" />
             <img src="@/assets/images/logo-1024@2x.png" style="margin-left:18px;height: 32px;">
             <span class="flex1"></span>
-            <span class="cur_P" @click="loginOut">退出登录</span>
-
+            <el-dropdown>
+                <svg-icon class="cur_P" icon="user" style="font-size:20px" />
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item>超级管理员(admin)</el-dropdown-item>
+                        <el-dropdown-item class="cur_P" @click="loginOut">退出登录</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
         </div>
     </div>
 </template>

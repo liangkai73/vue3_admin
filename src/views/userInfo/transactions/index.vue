@@ -3,33 +3,29 @@
 * Copyright (c) 2022 Copyright tj All Rights Reserved.
 * Author: lanck
 * Date: 2023-02-15 09:18
-* Desc: 员工管理
+* Desc: 交易记录
 */
  -->
 
 <template>
-    <pageView title="用户管理">
+    <pageView>
         <template #head>
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/userInfo' }">用户管理</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/userInfo/transactions' }">交易记录</el-breadcrumb-item>
             </el-breadcrumb>
         </template>
         <!-- top 过滤筛选条件 -->
         <div class="table-top-limit flex_r_s">
-            <span style="margin:0 10px 0 0px;">用户名</span>
-            <el-input type="text" style="width: 200px;" placeholder="请输入" v-model="inputParmas.name" />
-            <span style="margin:0 10px 0 16px;">手机号</span>
-            <el-select v-model="inputParmas.deposit" placeholder="请选择">
-                <el-option v-for="item in options_deposit" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
-            <span style="margin:0 10px 0 16px;">押金</span>
+            <span style="margin:0 10px 0 0px;">类型</span>
             <el-select v-model="inputParmas.date" placeholder="请选择">
                 <el-option v-for="item in options_date" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <span style="margin:0 10px 0 16px;">状态</span>
+            <span style="margin:0 10px 0 16px;">日期</span>
             <el-select v-model="inputParmas.date" placeholder="请选择">
                 <el-option v-for="item in options_date" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
+
             <el-button style="margin-left: 16px;">查询</el-button>
             <el-button style="margin-left: 16px;">重置</el-button>
 
@@ -40,20 +36,9 @@
             <div class="table-inner">
                 <el-table :data="tableData" style="width: 100%">
                     <el-table-column prop="id" label="ID" width="100" />
-                    <el-table-column prop="name" label="用户名" />
-                    <el-table-column prop="phone" label="手机号" />
-                    <el-table-column prop="deposit" label="押金" />
-                    <el-table-column prop="yue" label="账户余额" />
-                    <el-table-column prop="status" label="状态" />
-                    <el-table-column prop="date" label="注册时间" />
-                    <el-table-column label="操作" width="350">
-                        <template #default="scope">
-                            <el-button size="small" @click="handleOrder('detail', scope.row)">详情</el-button>
-                            <el-button size="small" @click="handleOrder('transactions', scope.row)">交易记录</el-button>
-                            <el-button size="small" @click="handleOrder('coupons', scope.row)">优惠券记录</el-button>
-                            <el-button size="small" type="danger" @click="handleOrder('disable', scope.row)">冻结</el-button>
-                        </template>
-                    </el-table-column>
+                    <el-table-column prop="temstr" label="时间" />
+                    <el-table-column prop="temstr" label="交易金额" />
+                    <el-table-column prop="temstr" label="类型" />
                 </el-table>
 
             </div>
@@ -108,16 +93,15 @@ const tableData = [
         yue: '500',
         status: "正常",
         date: '2021-04-25 14:00:00',
+        temstr: '-'
     }
 ]
-function handleOrder(order: 'detail' | 'disable' | 'transactions' | 'coupons', raw?: any) {
+function handleOrder(order: 'detail' | 'disable' | 'charge', raw?: any) {
     console.log(raw)
     switch (order) {
         case 'detail': linkTo('userInfo/userDetail', { id: raw.id })
             break
-        case 'transactions': linkTo('userInfo/transactions', { id: raw.id })
-            break
-        case 'coupons': linkTo('userInfo/coupons', { id: raw.id })
+        case 'charge': linkTo('userInfo/charge', { id: raw.id })
             break
         case 'disable': console.log('删除')
 

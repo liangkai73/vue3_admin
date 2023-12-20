@@ -78,12 +78,12 @@ const testArr: Ref<ElMenuItemType[]> = ref([
         }]
     }
     ,
-    {
-        title: '财务管理',
-        path: '/finance',
-        icon: 'finance',
-    }
-    ,
+    // {
+    //     title: '财务管理',
+    //     path: '/finance',
+    //     icon: 'finance',
+    // }
+    // ,
     {
         title: '活动管理',
         path: '/activity',
@@ -94,12 +94,12 @@ const testArr: Ref<ElMenuItemType[]> = ref([
         }
         ]
     }
-    ,
-    {
-        title: '员工配置',
-        path: '/staff',
-        icon: 'peoples',
-    }
+    // ,
+    // {
+    //     title: '员工配置',
+    //     path: '/staff',
+    //     icon: 'peoples',
+    // }
     ,
     {
         title: '合作伙伴',
