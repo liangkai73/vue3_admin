@@ -10,8 +10,8 @@ import { loginApi } from "@/api/config-api";
 import { mixStore } from "@/utils/store";
 
 interface loginParams {
-  userId: string;
-  passWord: string;
+  name: string;
+  pwd: string;
 }
 /**
  *
@@ -20,12 +20,18 @@ interface loginParams {
  * @desc 登录接口
  */
 function postLogin(param: loginParams): Promise<any> {
-  mixStore.token = "test_token";
-  return net.post(loginApi.postLogin, param).then((res: any) => {
-    mixStore.token = res.oauth_token;
-  });
+  // mixStore.token = "test_token";
+  return net
+    .post(loginApi.postLogin, param)
+    .then((res: any) => {
+      mixStore.token = res;
+    })
+    .catch((err) => {
+      return Promise.reject(false);
+    });
 }
 function loginout() {
   mixStore.token = "";
+  return Promise.resolve(true);
 }
 export default { postLogin, loginout };

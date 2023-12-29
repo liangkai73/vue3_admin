@@ -17,35 +17,28 @@
         <!-- top 过滤筛选条件 -->
         <div class="table-top-limit flex_r_s">
             <span style="margin:0 10px 0 0px;">用户名</span>
-            <el-input type="text" style="width: 200px;" placeholder="请输入" v-model="inputParmas.name" />
+            <el-input type="text" style="width: 200px;" placeholder="请输入" v-model="listParams.name" />
             <span style="margin:0 10px 0 16px;">手机号</span>
-            <el-select v-model="inputParmas.deposit" placeholder="请选择">
-                <el-option v-for="item in options_deposit" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
-            <span style="margin:0 10px 0 16px;">押金</span>
-            <el-select v-model="inputParmas.date" placeholder="请选择">
-                <el-option v-for="item in options_date" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
+            <el-input type="phone" style="width: 200px;" placeholder="请输入" v-model="listParams.phone" />
             <span style="margin:0 10px 0 16px;">状态</span>
-            <el-select v-model="inputParmas.date" placeholder="请选择">
-                <el-option v-for="item in options_date" :key="item.value" :label="item.label" :value="item.value" />
+            <el-select v-model="listParams.status" placeholder="请选择">
+                <el-option v-for="item in options_satus" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
-            <el-button style="margin-left: 16px;">查询</el-button>
-            <el-button style="margin-left: 16px;">重置</el-button>
+            <el-button style="margin-left: 16px;" @click="toolHanleBtn('serch')">查询</el-button>
+            <el-button style="margin-left: 16px;" @click="toolHanleBtn('reset')">重置</el-button>
 
 
         </div>
         <!-- table-body -->
         <card class="table-container mt20">
             <div class="table-inner">
-                <el-table :data="tableData" style="width: 100%">
-                    <el-table-column prop="id" label="ID" width="100" />
+                <el-table :data="userList" style="width: 100%">
+                    <el-table-column type="index" label="ID" width="100" />
                     <el-table-column prop="name" label="用户名" />
                     <el-table-column prop="phone" label="手机号" />
-                    <el-table-column prop="deposit" label="押金" />
                     <el-table-column prop="yue" label="账户余额" />
                     <el-table-column prop="status" label="状态" />
-                    <el-table-column prop="date" label="注册时间" />
+                    <el-table-column prop="createTime" label="注册时间" />
                     <el-table-column label="操作" width="350">
                         <template #default="scope">
                             <el-button size="small" @click="handleOrder('detail', scope.row)">详情</el-button>
@@ -59,7 +52,8 @@
             </div>
             <div class="table-pagination flex_r_s">
                 <span class="flex1"></span>
-                <el-pagination background layout="prev, pager, next" :total="1000" />
+                <el-pagination background v-model="listParams.currentPage" layout="prev, pager, next"
+                    :total="listParams.total" />
             </div>
         </card>
     </pageView>
@@ -71,6 +65,7 @@ import { LocationQueryRaw, useRouter } from 'vue-router'
 import { ElPagination, ElTable } from "element-plus";
 import pageView from '@/components/pageView/index.vue'
 import card from '@/components/card/index.vue'
+import api from '@/api'
 
 const router = useRouter();
 const inputParmas = ref({
@@ -78,6 +73,21 @@ const inputParmas = ref({
     deposit: '',
     date: ''
 })
+
+const listParams = reactive({
+    currentPage: 1,
+    desc: false,
+    name: '',
+    orderBy: 'createTime',
+    phone: '',
+    sizeOfPage: 20,
+    status: undefined,
+    total: 0
+
+})
+// 用户列表
+let userList = ref([])
+
 const options_deposit = [
     {
         value: '300',
@@ -88,14 +98,14 @@ const options_deposit = [
         label: '300',
     }
 ]
-const options_date = [
+const options_satus = [
     {
-        value: '2023.11-11',
-        label: '2023.11-11',
+        value: '0',
+        label: '正常',
     },
     {
-        value: '2023.11-12',
-        label: '2023.11-12',
+        value: '1',
+        label: '禁用',
     }
 ]
 const tableData = [
@@ -131,6 +141,37 @@ function linkTo(url: string, query: LocationQueryRaw) {
         query
     })
 }
+// toolsBtn功能列
+function toolHanleBtn(handle: 'serch' | 'reset') {
+    switch (handle) {
+        case 'serch': getUserList()
+            break
+        case "reset": resetParams()
+    }
+}
+// 重置请求参数
+function resetParams() {
+    listParams.currentPage = 1
+    listParams.name = ''
+    listParams.phone = ''
+    listParams.sizeOfPage = 20
+    listParams.status = undefined
+}
+// 获取用户列表
+function getUserList() {
+    const temParams = Object.assign({}, listParams, { currentPage: listParams.currentPage - 1 })
+    api.user.getUserList(temParams).then((res: any) => {
+        console.log(res)
+        userList.value = res.rows
+        console.log(userList)
+
+    })
+}
+// 页面载入
+function pageInit() {
+    getUserList();
+}
+pageInit();
 </script>
 <style lang="scss" scoped>
 .table-container {}

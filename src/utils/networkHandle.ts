@@ -2,22 +2,21 @@
  * @Author: lanck.xie
  * @Date: 2023-02-23 17:20:25
  * @Last Modified by: lanck.xie
- * @Last Modified time: 2023-03-01 15:42:04
+ * @Last Modified time: 2023-12-22 12:38:03
  */
 import { globalStore } from "@/utils/store";
 
 import { Axios } from "axios";
 
 import { INetworkHandler } from "./types/networkHandle";
+import { ElMessage } from "element-plus";
 
 /**
  * @desc 网络消息处理器.
  */
 
 //  TODO 临时toast
-const $UIToast = function (e: any) {
-  console.log(e);
-};
+const $UIToast = ElMessage;
 
 export class NetworkHandler implements INetworkHandler {
   /**
@@ -82,7 +81,7 @@ export class NetworkHandler implements INetworkHandler {
   onRawHandler(serverData: Response, url: string): void {
     switch (serverData.status) {
       case 404:
-        $UIToast({ type: "error", content: "服务暂时不可用" });
+        $UIToast({ type: "error", message: "服务暂时不可用" });
         throw new Error("status: " + serverData.status + "; url: " + url);
         break;
     }
@@ -116,12 +115,16 @@ export class NetworkHandler implements INetworkHandler {
         if (data.err_msg) {
           for (const key in prefixs) {
             if (data.err_msg.indexOf(prefixs[key]) >= 0) {
-              $UIToast({ type: "error", content: "服务暂时不可用" });
+              $UIToast({ type: "error", message: "服务暂时不可用" });
               throw data;
             }
           }
         }
         break;
+      }
+      case "fail": {
+        $UIToast({ type: "error", message: data.msg });
+        throw new Error("404");
       }
     }
     return data.data || data;

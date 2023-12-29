@@ -29,6 +29,7 @@
 
 <script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue';
+import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router';
 import icon from "@/libs/icon/index.vue";
 import api from '@/api'
@@ -37,10 +38,16 @@ const router = useRouter();
 
 
 function loginOut() {
-    api.login.loginout()
-    router.push({
-        path: '/login',
+    api.login.loginout().then(() => {
+        ElMessage({
+            message: '您的账号已退出登录',
+            type: 'success',
+        })
+        router.push({
+            path: '/login',
+        })
     })
+
 } 
 </script>
 <style scoped lang="scss" >

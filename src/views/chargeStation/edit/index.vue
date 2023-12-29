@@ -23,22 +23,26 @@
                     <div class="flex_c_s">
                         <!-- inner-left -->
                         <div class="flex_r_s input-item">
-                            <span class="input-title">电站编号</span>
-                            <span class="title-node">Pnd202312110058</span>
+                            <span class="input-title redStar">电站编号</span>
+                            <el-input :disabled="pageType == 'edit'" v-model="infoParams.id" placeholder="请输入" />
                             <span class="input-title">电站坐标</span>
-                            <el-input v-model="infoParams.miaoshu" placeholder="请输入" />
+
+                            <span class="title-node" v-if="infoParams.stationLat && infoParams.stationLng">{{
+                                infoParams.stationLat }},{{ infoParams.stationLng
+    }}</span>
+                            <el-button>定位坐标</el-button>
                         </div>
                         <div class="flex_r_s input-item">
-                            <span class="input-title">电站名称</span>
-                            <el-input v-model="infoParams.area" placeholder="请输入" />
+                            <span class="input-title redStar">电站名称</span>
+                            <el-input v-model="infoParams.stationName" placeholder="请输入" />
                             <span class="input-title">所属代理商</span>
-                            <el-input v-model="infoParams.area" placeholder="请输入" />
+                            <el-input v-model="infoParams.operatorId" placeholder="请输入" />
                             <span class="input-title">所属区域</span>
-                            <el-input v-model="infoParams.area" placeholder="请输入" />
+                            <el-input v-model="infoParams.owner" placeholder="请输入" />
                         </div>
                         <div class="flex_r_s input-item">
-                            <span class="input-title">详细地址</span>
-                            <el-input v-model="infoParams.miaoshu" placeholder="请输入" />
+                            <span class="input-title redStar">详细地址</span>
+                            <el-input v-model="infoParams.address" placeholder="请输入" />
                         </div>
 
                         <div class="flex_r_s input-item">
@@ -61,21 +65,16 @@
 
                         <div class="flex_r_s input-item">
                             <span class="input-title">营业时间</span>
-                            <el-input v-model="infoParams.mark" placeholder="请输入" />
+                            <el-input v-model="infoParams.busineHours" placeholder="请输入" />
                         </div>
 
                         <div class="flex_r_s input-item">
                             <span class="input-title">电站电话</span>
-                            <el-input type="phone" v-model="infoParams.ipone" placeholder="请输入" />
+                            <el-input type="phone" v-model="infoParams.stationTel" placeholder="请输入" />
                         </div>
-                        <div class="flex_r_s input-item">
-                            <span class="input-title">优势描述</span>
-                            <el-input v-model="infoParams.miaoshu" placeholder="请输入" />
-                        </div>
-
                         <div class="flex_r_s input-item">
                             <span class="input-title">配置说明</span>
-                            <el-input v-model="infoParams.quanyi" placeholder="请输入" />
+                            <el-input v-model="infoParams.siteTags" placeholder="请输入" />
                         </div>
 
                     </div>
@@ -85,7 +84,7 @@
                 <card class="baseinfo-inner mt20" title="价格信息" :gutter="16">
                     <div class="flex_r_s">
                         <!-- inner-left -->
-                        <div class="flex_c_s flex1">
+                        <!-- <div class="flex_c_s flex1">
                             <div class="flex_r_s input-item">
                                 <span class="input-title">电费</span>
                                 <el-input v-model="infoParams.number" placeholder="请输入" />
@@ -102,9 +101,9 @@
                                 <span class="input-title">优惠券</span>
                                 <el-input v-model="infoParams.image" placeholder="请输入" />
                             </div>
-                        </div>
+                        </div> -->
                         <!-- inner-right -->
-                        <div class="flex_c_s flex1">
+                        <!-- <div class="flex_c_s flex1">
                             <div class="flex_r input-item">
                                 <span class="input-title">服务费</span>
                                 <el-input v-model="infoParams.name" placeholder="请输入" />
@@ -121,7 +120,7 @@
                                 <span class="input-title"></span>
 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <p class="mt30"></p>
                 </card>
@@ -174,14 +173,14 @@
 </template>
 
 <script setup  lang="ts">
-import { reactive, toRefs, onMounted, getCurrentInstance, ref } from 'vue';
-import { LocationQueryRaw, useRouter } from 'vue-router'
-import { ElPagination, ElTable, ElMessageBox } from "element-plus";
+import { reactive, toRefs, onMounted, getCurrentInstance, ref, Ref } from 'vue';
+import { LocationQueryRaw, useRouter, useRoute } from 'vue-router'
+import { ElPagination, ElTable, ElMessageBox, ElMessage } from "element-plus";
 import { Plus } from '@element-plus/icons-vue'
 import type { UploadProps } from 'element-plus'
 import type { TabsPaneContext } from 'element-plus'
 import card from '@/components/card/index.vue';
-
+import api from '@/api'
 
 // tabsindex
 const activeName = ref('1')
@@ -189,19 +188,31 @@ const activeName = ref('1')
 const router = useRouter();
 
 //  infoParams 
-const infoParams = reactive({
-    number: '',
-    area: '',
-    miaoshu: "",
-    image: '',
-    mark: '',
-    ipone: '',
-    name: '',
-    adress: '',
-    quanyi: '',
-    time: '',
-    daili: ''
+const infoParams = ref({
+    address: "",
+    bannerImg: "",
+    busineHours: "",
+    electricityFee: "",
+    id: "",
+    operatorId: "",
+    owner: "",
+    parkFee: "",
+    parkInfo: "",
+    serviceFee: "",
+    serviceTel: "",
+    siteTags: "",
+    stationLat: NaN,
+    stationLng: NaN,
+    stationName: "",
+    stationStatus: 0,
+    stationTel: "",
 })
+
+// pageType
+let pageType: 'add' | 'edit' = 'add'
+
+// station id
+let editId: string = '';
 
 
 
@@ -209,10 +220,13 @@ function handleBtn(handle: 'save' | 'delete') {
     switch (handle) {
 
         case 'save':
-
-            router.push({
-                path: "/chargeStation"
+            handlePostSite().then(res => {
+                router.push({
+                    path: "/chargeStation"
+                })
             })
+
+
             break
         case 'delete':
 
@@ -226,6 +240,67 @@ function handleBtn(handle: 'save' | 'delete') {
 
 const handleClickTabs = (tab: TabsPaneContext, event: Event) => {
     console.log(tab, event)
+}
+// 保存电站
+
+function handlePostSite() {
+
+    // 参数检索
+    const checkNodeArr: Array<checkNode> = [
+        { bandKey: 'id', lable: '电站编号' },
+        { bandKey: 'address', lable: '详细地址' },
+        { bandKey: 'stationName', lable: '电站名称' }
+    ]
+    _paramsCheck(infoParams.value, checkNodeArr);
+
+    // 请求体
+    const temParams = infoParams.value;
+
+
+    switch (pageType) {
+        case 'add':
+            return api.chargeStation.postChargeStation((temParams as station.addSitParams)).then(res => {
+                ElMessage({
+                    message: '添加成功',
+                    type: 'success',
+                })
+
+                return Promise.resolve(res)
+            })
+            break
+        case "edit":
+            return api.chargeStation.putStation(editId, temParams as station.addSitParams).then(res => {
+                ElMessage({
+                    message: '修改成功',
+                    type: 'success',
+                })
+
+                return Promise.resolve(res)
+            })
+            break
+    }
+}
+
+interface checkNode {
+    bandKey: string
+    lable: string
+}
+
+// 参数检查
+function _paramsCheck(params: { [key: string]: string | number }, keys: Array<checkNode>) {
+    keys.forEach((node: checkNode) => {
+        if (params.hasOwnProperty(node.bandKey)) {
+            if (!params[(node.bandKey)]) {
+                ElMessage({
+                    message: node.lable + ',不能为空。',
+                    type: 'error',
+                })
+                throw Error('disable empty input')
+            }
+        }
+    })
+
+
 }
 
 // 上传
@@ -315,6 +390,26 @@ function linkTo(url: string, query?: LocationQueryRaw) {
         query
     })
 }
+// 获取电站信息
+function getSiteInfo(id: string) {
+    api.chargeStation.getStation(id).then(res => {
+        infoParams.value = res
+    })
+}
+
+// 初始化函数
+function init() {
+    const route = useRoute();
+
+    if (route.query.id) {
+        pageType = 'edit';
+        editId = route.query.id as string
+        getSiteInfo((editId as string))
+    } else {
+        pageType = 'add'
+    }
+}
+init();
 </script>
 <style lang="scss" >
 .baseinfo-inner {
@@ -338,7 +433,8 @@ function linkTo(url: string, query?: LocationQueryRaw) {
 .input-item {
     line-height: 50px;
     margin-top: 25px;
-    height: 50px;
+    // height: 50px;
+    flex-wrap: wrap;
 }
 
 .input-title {

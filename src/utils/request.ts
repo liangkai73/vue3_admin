@@ -59,7 +59,7 @@ function post(url: string, option: object) {
  * @returns promise
  * @desc post 请求
  */
-function _delete(url: string, option: object) {
+function _delete(url: string, option?: object) {
   return netInstance.delete(url, option);
 }
 
