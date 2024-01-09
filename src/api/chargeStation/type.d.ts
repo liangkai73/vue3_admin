@@ -20,10 +20,30 @@ declare namespace station {
     serviceFee?: string; // 服务费率
     serviceTel?: string; // 站点电话
     siteTags?: string; // 站点标签
-    stationLat?: number; // 站点纬度
-    stationLng?: number; // 站点经度
+    stationLat?: number | string; // 站点纬度
+    stationLng?: number | string; // 站点经度
     stationName: string; // 站点名称
     stationStatus: 0 | 1; // 站点状态
     stationTel?: string; // 站点电话
+  }
+
+  interface connectListParams {
+    stationId: string;
+  }
+
+  interface connectParams {
+    connectorIdx: 1 | 2; // 充电设备接口序号、默认1
+    connectorName: string; // 充电设备接口名称
+    connectorType: number; // 接口类型
+    current: number; // 额定电流
+    equipmentId: string; //所属充电桩
+    lockStatus: number; //地锁状态
+    nationalStandard: number; // 国家标准
+    parkNo: string; // 车位号
+    parkStatus: number; // 车位状态
+    power: number; // 额定功率
+    status: number; //充电设备接口状态
+    voltageLowerLimits: number; // 电压下线
+    voltageUpperLimits: number; // 电压上线
   }
 }

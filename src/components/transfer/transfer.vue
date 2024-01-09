@@ -114,7 +114,7 @@
 </template>
 
 <script setup  lang="ts">
-import { reactive, toRefs, onMounted, getCurrentInstance, defineProps } from 'vue'
+import { reactive, toRefs, onMounted, getCurrentInstance } from 'vue'
 import { COMPONENTS_TRANSFER_MSG } from '@/themeInit/config'
 
 

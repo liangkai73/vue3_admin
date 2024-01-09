@@ -97,10 +97,83 @@ function deleteStation(id: string | number): Promise<any> {
     });
 }
 
+/**
+ *
+ * @description 获取充电接口
+ * @param {station.connectListParams} params
+ * @return {*}  {Promise<any>}
+ */
+function getConnectList(params: station.connectListParams): Promise<any> {
+  return net
+    .get(chargeStationApi.getConnectList, { params })
+    .then((res) => {
+      return Promise.resolve(res);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+}
+
+/**
+ *
+ * @description 新增充电接口
+ * @param {station.connectParams} params
+ * @return {*}  {Promise<any>}
+ */
+function postConnect(params: station.connectParams): Promise<any> {
+  return net
+    .post(chargeStationApi.postConnects, params)
+    .then((res) => {
+      return Promise.resolve(res);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+}
+
+/**
+ *
+ * @description 修改充电接口参数
+ * @param {string} id
+ * @param {station.connectParams} params
+ * @return {*}  {Promise<any>}
+ */
+function putConnect(id: string, params: station.connectParams): Promise<any> {
+  return net
+    .post(chargeStationApi.putConnects(id), params)
+    .then((res) => {
+      return Promise.resolve(res);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+}
+
+/**
+ *
+ * @description 删除充电接口
+ * @param {string} id
+ * @return {*}  {Promise<any>}
+ */
+function deleteConnect(id: string): Promise<any> {
+  return net
+    .post(chargeStationApi.deleteConnects(id), {})
+    .then((res) => {
+      return Promise.resolve(res);
+    })
+    .catch((err) => {
+      return Promise.reject(err);
+    });
+}
+
 export default {
   getChargeStation,
   postChargeStation,
   getStation,
   putStation,
   deleteStation,
+  getConnectList,
+  postConnect,
+  putConnect,
+  deleteConnect,
 };

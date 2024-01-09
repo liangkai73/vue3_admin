@@ -151,7 +151,7 @@ const listParams: coupon.list = reactive({
     name: '', // 名称
     sizeOfPage: 20, // 分页数量
     status: '',// 优惠券状态 [0:正常, 1:已过期, 10:已使用]
-    userType: 0,// 领取对象 [0:不限制,1:新用户,2:老用户]
+    userType: '',// 领取对象 [0:不限制,1:新用户,2:老用户]
 })
 const pageTotal = ref(0);
 
@@ -227,7 +227,7 @@ function resetParams() {
     listParams.currentPage = 1;
     listParams.name = '';
     listParams.status = '';
-    listParams.userType = 0;
+    listParams.userType = "";
 }
 // 获取优惠券list
 function getCouponList() {

@@ -141,8 +141,6 @@
 <script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance, ref, Ref } from 'vue';
 import { useRouter } from 'vue-router'
-import { Plus } from '@element-plus/icons-vue'
-import type { UploadProps } from 'element-plus'
 import api from '@/api';
 
 import card from '@/components/card/index.vue';
@@ -166,7 +164,6 @@ let infoParams = reactive({
     dateArr2: '',// []
     closeTime: '',
     openTime: ''
-
 })
 const options_userType = [
     {
@@ -238,7 +235,7 @@ function handleBtn(handle: 'save' | 'cancel') {
         case 'cancel':
 
             router.push({
-                path: "/coupon"
+                path: "/activity/coupon"
             })
 
 
@@ -289,7 +286,7 @@ function selectCouponType(e: any) {
 function getCouponInfo(id: string) {
     api.coupon.getCouponTem(id).then(res => {
         infoParams = Object.assign(infoParams, res, {
-            dateArr: [new Date(res.startTime), new Date(res.endTime)],  //[]
+            dateArr: [res.startTime ? new Date(res.startTime) : '', res.endTime ? new Date(res.endTime) : ''],  //[]
             dateArr2: [res.openTime, res.closeTime]
         })
     })

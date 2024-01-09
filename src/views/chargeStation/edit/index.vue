@@ -26,11 +26,10 @@
                             <span class="input-title redStar">电站编号</span>
                             <el-input :disabled="pageType == 'edit'" v-model="infoParams.id" placeholder="请输入" />
                             <span class="input-title">电站坐标</span>
-
                             <span class="title-node" v-if="infoParams.stationLat && infoParams.stationLng">{{
-                                infoParams.stationLat }},{{ infoParams.stationLng
+                                '经度:' + infoParams.stationLng }},{{ '纬度:' + infoParams.stationLat
     }}</span>
-                            <el-button>定位坐标</el-button>
+                            <el-button @click="dialogVisible = true">定位坐标</el-button>
                         </div>
                         <div class="flex_r_s input-item">
                             <span class="input-title redStar">电站名称</span>
@@ -49,16 +48,14 @@
                             <span class="input-title">场地图</span>
                             <div class="flex_r_s" style="width:350px;margin-left:35px">
 
-                                <el-upload class="avatar-uploader"
-                                    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-                                    :show-file-list="false" :on-success="handleAvatarSuccess"
-                                    :before-upload="beforeAvatarUpload">
-                                    <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+                                <el-upload class="avatar-uploader" action="/api/file/upload2" :show-file-list="false"
+                                    :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+                                    <img v-if="infoParams.bannerImg" :src="infoParams.bannerImg" class="avatar" />
                                     <el-icon v-else class="avatar-uploader-icon">
                                         <Plus />
                                     </el-icon>
                                 </el-upload>
-                                <el-button type="primary" style="margin-left:20px">上传</el-button>
+                                <!-- <el-button type="primary" style="margin-left:20px">上传</el-button> -->
                             </div>
 
                         </div>
@@ -125,43 +122,11 @@
                     <p class="mt30"></p>
                 </card>
             </el-tab-pane>
-            <el-tab-pane label="电桩列表" name="2">
-                <card class="table-container mt20" :gutter="16">
-                    <div class="flex_r_s">
-                        <el-button type="primary" style="margin-left: 16px;" @click="listBtnHandle('create')">新增</el-button>
-                        <el-button style="margin-left: 16px;">报表导出</el-button>
-                        <el-button style="margin-left: 16px;">删除</el-button>
-
-                    </div>
-                    <div class="mt20">
-                        <el-table :data="tableData" style="width: 100%">
-                            <el-table-column prop="id" label="ID" width="100" />
-                            <el-table-column prop="wxname" label="电站编号" />
-                            <el-table-column prop="name" label="名称" />
-                            <el-table-column prop="phone" label="所属区域" />
-                            <el-table-column prop="deposit" label="电站地址" />
-                            <el-table-column prop="package" label="电桩数" />
-                            <el-table-column prop="daili" label="所属代理商" />
-                            <el-table-column prop="date" label="创建时间" />
-                            <el-table-column label="操作" width="350">
-                                <template #default="scope">
-                                    <el-button size="small" @click="handleOrder('detail', scope.row)">详情</el-button>
-                                    <el-button size="small" @click="handleOrder('charge', scope.row)">编辑</el-button>
-                                    <el-button size="small" type="danger"
-                                        @click="handleOrder('disable', scope.row)">停用</el-button>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-
-                    </div>
-                    <div class="table-pagination flex_r_s">
-                        <span class="flex1"></span>
-                        <el-pagination background layout="prev, pager, next" :total="1000" />
-                    </div>
-                </card>
-
+            <el-tab-pane label="电桩列表" name="2" :disabled="pageType == 'add'">
+                <connect-list />
             </el-tab-pane>
         </el-tabs>
+
 
 
         <div class="mt20 flex_r">
@@ -169,17 +134,22 @@
             <el-button style="margin-left: 16px;" @click="handleBtn('delete')">取消</el-button>
 
         </div>
+        <!-- 地图定位 -->
+        <el-drawer v-model="dialogVisible" title="地图定位" :size="'1000px'" :direction="'rtl'">
+            <map-box v-model:stationLng="infoParams.stationLng" v-model:stationLat="infoParams.stationLat"></map-box>
+        </el-drawer>
     </pageView>
 </template>
 
 <script setup  lang="ts">
 import { reactive, toRefs, onMounted, getCurrentInstance, ref, Ref } from 'vue';
 import { LocationQueryRaw, useRouter, useRoute } from 'vue-router'
-import { ElPagination, ElTable, ElMessageBox, ElMessage } from "element-plus";
 import { Plus } from '@element-plus/icons-vue'
 import type { UploadProps } from 'element-plus'
 import type { TabsPaneContext } from 'element-plus'
 import card from '@/components/card/index.vue';
+import mapBox from './components/map.vue';
+import connectList from './components/connectList.vue';
 import api from '@/api'
 
 // tabsindex
@@ -201,20 +171,19 @@ const infoParams = ref({
     serviceFee: "",
     serviceTel: "",
     siteTags: "",
-    stationLat: NaN,
-    stationLng: NaN,
+    stationLat: 0,
+    stationLng: 0,
     stationName: "",
     stationStatus: 0,
     stationTel: "",
 })
 
+let dialogVisible = ref(false);
 // pageType
 let pageType: 'add' | 'edit' = 'add'
 
 // station id
 let editId: string = '';
-
-
 
 function handleBtn(handle: 'save' | 'delete') {
     switch (handle) {
@@ -238,8 +207,8 @@ function handleBtn(handle: 'save' | 'delete') {
     }
 }
 
-const handleClickTabs = (tab: TabsPaneContext, event: Event) => {
-    console.log(tab, event)
+const handleClickTabs = (tab: TabsPaneContext, e: Event) => {
+    console.log(tab, e)
 }
 // 保存电站
 
@@ -304,12 +273,17 @@ function _paramsCheck(params: { [key: string]: string | number }, keys: Array<ch
 }
 
 // 上传
-const imageUrl = ref('')
+// const imageUrl = ref('')
 const handleAvatarSuccess: UploadProps['onSuccess'] = (
     response,
     uploadFile
 ) => {
-    imageUrl.value = URL.createObjectURL(uploadFile.raw!)
+    // console.dir(response);
+    // console.dir(uploadFile);
+    // infoParams.value.bannerImg = URL.createObjectURL(uploadFile.raw!);
+    // console.log(URL.createObjectURL(uploadFile.raw!))
+    infoParams.value.bannerImg = response.data.fileUrl
+
 }
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
     if (rawFile.type !== 'image/jpeg') {

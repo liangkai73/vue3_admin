@@ -6,7 +6,7 @@ declare namespace coupon {
     name?: string; // 名称
     sizeOfPage?: number; // 分页数量
     status?: 0 | 1 | 2 | ""; // 优惠券状态 [0:正常, 1:已过期, 10:已使用]
-    userType?: 0 | 1 | 2; // 领取对象 [0:不限制,1:新用户,2:老用户]
+    userType?: 0 | 1 | 2 | ""; // 领取对象 [0:不限制,1:新用户,2:老用户]
   }
   interface template {
     applyType?: number; //适用类型
